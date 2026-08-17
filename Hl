@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Indian Portfolio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      background: #08090d;
+      color: #f5f5f5;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        "SF Pro Text", Inter, Arial, sans-serif;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 520px;
+      min-height: 100vh;
+      margin: auto;
+      background: #08090d;
+      padding-bottom: 90px;
+    }
+
+    .header {
+      padding: 24px 20px 10px;
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      color: #8b8e98;
+      margin-bottom: 6px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: 750;
+      letter-spacing: -0.8px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 6px 10px;
+      border-radius: 20px;
+      background: #11131a;
+      color: #8f94a3;
+      font-size: 11px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #777;
+    }
+
+    .card {
+      margin: 14px 16px;
+      padding: 18px;
+      border: 1px solid #1b1d25;
+      border-radius: 20px;
+      background: #101117;
+    }
+
+    .hero-label {
+      color: #8f94a3;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .hero-value {
+      font-size: 34px;
+      font-weight: 750;
+      letter-spacing: -1px;
+    }
+
+    .profit {
+      color: #43d17d;
+    }
+
+    .loss {
+      color: #ff626c;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      padding: 13px;
+      border-radius: 14px;
+      background: #151720;
+    }
+
+    .stat-label {
+      color: #858996;
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-size: 15px;
+      font-weight: 650;
+    }
+
+    .section {
+      padding: 0 16px;
+      margin-top: 24px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .small-button {
+      border: 0;
+      background: transparent;
+      color: #a8adb9;
+      font-size: 13px;
+      padding: 5px;
+    }
+
+    .asset {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid #181a21;
+    }
+
+    .asset:last-child {
+      border-bottom: 0;
+    }
+
+    .asset-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: #191c25;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .asset-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .asset-name {
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .asset-meta {
+      margin-top: 4px;
+      color: #7f8490;
+      font-size: 11px;
+    }
+
+    .asset-right {
+      text-align: right;
+    }
+
+    .asset-price {
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .asset-change {
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 35px 15px;
+      color: #777c88;
+      font-size: 13px;
+    }
+
+    .primary {
+      width: 100%;
+      border: 0;
+      border-radius: 14px;
+      padding: 14px;
+      background: #f4f5f7;
+      color: #08090d;
+      font-weight: 700;
+      margin-top: 12px;
+    }
+
+    .danger {
+      border: 0;
+      background: #281216;
+      color: #ff6972;
+      border-radius: 12px;
+      padding: 10px 13px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 520px;
+      height: 72px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: rgba(10, 11, 16, 0.96);
+      border-top: 1px solid #1b1d25;
+      backdrop-filter: blur(20px);
+      z-index: 20;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .nav-button {
+      border: 0;
+      background: transparent;
+      color: #696e7b;
+      font-size: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .nav-button.active {
+      color: #fff;
+    }
+
+    .nav-icon {
+      font-size: 19px;
+    }
+
+    .fab {
+      position: fixed;
+      right: max(20px, calc((100vw - 520px) / 2 + 20px));
+      bottom: 88px;
+      width: 52px;
+      height: 52px;
+      border: 0;
+      border-radius: 50%;
+      background: #f4f5f7;
+      color: #090a0e;
+      font-size: 27px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      z-index: 15;
+    }
+
+    .sheet-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.65);
+      z-index: 30;
+      display: none;
+    }
+
+    .sheet-backdrop.show {
+      display: block;
+    }
+
+    .sheet {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 520px;
+      background: #11131a;
+      border-radius: 24px 24px 0 0;
+      padding: 22px 18px calc(24px + env(safe-area-inset-bottom));
+      z-index: 31;
+      display: none;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .sheet.show {
+      display: block;
+    }
+
+    .grabber {
+      width: 42px;
+      height: 4px;
+      border-radius: 5px;
+      background: #383b45;
+      margin: 0 auto 20px;
+    }
+
+    .sheet-title {
+      font-size: 20px;
+      font-weight: 750;
+      margin-bottom: 18px;
+    }
+
+    .field {
+      margin-bottom: 13px;
+    }
+
+    .field label {
+      display: block;
+      color: #8c909c;
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      border: 1px solid #252832;
+      outline: none;
+      background: #181a22;
+      color: white;
+      border-radius: 13px;
+      padding: 13px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .close-button {
+      width: 100%;
+      border: 0;
+      background: #1b1d25;
+      color: #d5d7dc;
+      border-radius: 13px;
+      padding: 13px;
+      margin-top: 8px;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 8px;
+      margin-left: 8px;
+    }
+
+    .icon-button {
+      border: 0;
+      background: #191b23;
+      color: #aaa;
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+    }
+
+    @media (min-width: 700px) {
+      body {
+        background: #030405;
+      }
+
+      .app {
+        border-left: 1px solid #15171d;
+        border-right: 1px solid #15171d;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app" id="app"></div>
+
+<div class="sheet-backdrop" id="backdrop"></div>
+
+<div class="sheet" id="sheet">
+  <div class="grabber"></div>
+  <div id="sheetContent"></div>
+</div>
+
+<script>
+  const defaultAssets = [
+    {
+      symbol: "RELIANCE",
+      name: "Reliance Industries",
+      type: "Stock",
+      price: 1428.50,
+      change: 0.82
+    },
+    {
+      symbol: "TCS",
+      name: "Tata Consultancy Services",
+      type: "Stock",
+      price: 3187.20,
+      change: -0.34
+    },
+    {
+      symbol: "INFY",
+      name: "Infosys",
+      type: "Stock",
+      price: 1582.40,
+      change: 1.12
+    },
+    {
+      symbol: "GOLDBEES",
+      name: "Gold BeES",
+      type: "ETF",
+      price: 78.70,
+      change: 0.64
+    },
+    {
+      symbol: "NIFTYBEES",
+      name: "Nippon India ETF Nifty BeES",
+      type: "ETF",
+      price: 276.30,
+      change: 0.41
+    },
+    {
+      symbol: "ITBEES",
+      name: "Nippon India ETF IT",
+      type: "ETF",
+      price: 44.80,
+      change: -0.18
+    }
+  ];
+
+  let holdings = JSON.parse(localStorage.getItem("holdings")) || [
+    {
+      symbol: "RELIANCE",
+      quantity: 10,
+      avgPrice: 1350
+    },
+    {
+      symbol: "GOLDBEES",
+      quantity: 100,
+      avgPrice: 72
+    }
+  ];
+
+  let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [
+    {
+      symbol: "NIFTYBEES",
+      threshold: 1,
+      up: true,
+      down: true
+    },
+    {
+      symbol: "INFY",
+      threshold: 1,
+      up: true,
+      down: false
+    }
+  ];
+
+  let currentTab = "home";
+  let editingIndex = null;
+
+  function save() {
+    localStorage.setItem("holdings", JSON.stringify(holdings));
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+  }
+
+  function money(value) {
+    return "₹" + Number(value).toLocaleString("en-IN", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  }
+
+  function getAsset(symbol) {
+    return defaultAssets.find(a => a.symbol === symbol) || {
+      symbol,
+      name: symbol,
+      type: "Stock",
+      price: 0,
+      change: 0
+    };
+  }
+
+  function portfolioStats() {
+    let invested = 0;
+    let value = 0;
+
+    holdings.forEach(h => {
+      const asset = getAsset(h.symbol);
+      invested += h.quantity * h.avgPrice;
+      value += h.quantity * asset.price;
+    });
+
+    const profit = value - invested;
+    const returnPct = invested ? (profit / invested) * 100 : 0;
+
+    return { invested, value, profit, returnPct };
+  }
+
+  function assetHTML(h, index, holdingMode = true) {
+    const asset = getAsset(h.symbol);
+    const changeClass = asset.change >= 0 ? "profit" : "loss";
+
+    if (holdingMode) {
+      const value = h.quantity * asset.price;
+      const profit = value - h.quantity * h.avgPrice;
+
+      return `
+        <div class="asset">
+          <div class="asset-icon">${h.symbol.slice(0,2)}</div>
+
+          <div class="asset-main">
+            <div class="asset-name">${h.symbol}</div>
+            <div class="asset-meta">
+              ${h.quantity} units · Avg ${money(h.avgPrice)}
+            </div>
+          </div>
+
+          <div class="asset-right">
+            <div class="asset-price">${money(value)}</div>
+            <div class="asset-change ${profit >= 0 ? "profit" : "loss"}">
+              ${profit >= 0 ? "+" : ""}${money(profit)}
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="icon-button" onclick="editHolding(${index})">✎</button>
+            <button class="icon-button" onclick="deleteHolding(${index})">×</button>
+          </div>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="asset">
+        <div class="asset-icon">${h.symbol.slice(0,2)}</div>
+
+        <div class="asset-main">
+          <div class="asset-name">${h.symbol}</div>
+          <div class="asset-meta">
+            ${asset.name}
+          </div>
+        </div>
+
+        <div class="asset-right">
+          <div class="asset-price">${money(asset.price)}</div>
+          <div class="asset-change ${changeClass}">
+            ${asset.change >= 0 ? "+" : ""}${asset.change.toFixed(2)}%
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button class="icon-button" onclick="editWatch(${index})">✎</button>
+          <button class="icon-button" onclick="deleteWatch(${index})">×</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function homeScreen() {
+    const s = portfolioStats();
+
+    return `
+      <div class="header">
+        <div class="eyebrow">INDIAN PORTFOLIO</div>
+        <div class="title">Good morning</div>
+
+        <div class="status">
+          <span class="dot"></span>
+          Demo prices · API not connected
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="hero-label">Portfolio value</div>
+        <div class="hero-value">${money(s.value)}</div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-label">Invested</div>
+            <div class="stat-value">${money(s.invested)}</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">Overall P/L</div>
+            <div class="stat-value ${s.profit >= 0 ? "profit" : "loss"}">
+              ${s.profit >= 0 ? "+" : ""}${money(s.profit)}
+            </div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">Return</div>
+            <div class="stat-value ${s.returnPct >= 0 ? "profit" : "loss"}">
+              ${s.returnPct >= 0 ? "+" : ""}${s.returnPct.toFixed(2)}%
+            </div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">Holdings</div>
+            <div class="stat-value">${holdings.length}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <div class="section-title">Holdings</div>
+          <button class="small-button" onclick="setTab('holdings')">See all</button>
+        </div>
+
+        ${holdings.length
+          ? holdings.slice(0,3).map((h,i) => assetHTML(h,i,true)).join("")
+          : `<div class="empty">No holdings yet</div>`
+        }
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <div class="section-title">Watchlist</div>
+          <button class="small-button" onclick="setTab('watchlist')">Manage</button>
+        </div>
+
+        ${watchlist.length
+          ? watchlist.slice(0,3).map((w,i) => assetHTML(w,i,false)).join("")
+          : `<div class="empty">Your watchlist is empty</div>`
+        }
+      </div>
+    `;
+  }
+
+  function holdingsScreen() {
+    const s = portfolioStats();
+
+    return `
+      <div class="header">
+        <div class="eyebrow">PORTFOLIO</div>
+        <div class="title">Holdings</div>
+      </div>
+
+      <div class="card">
+        <div class="hero-label">Current value</div>
+        <div class="hero-value">${money(s.value)}</div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-label">Invested</div>
+            <div class="stat-value">${money(s.invested)}</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">P/L</div>
+            <div class="stat-value ${s.profit >= 0 ? "profit" : "loss"}">
+              ${s.profit >= 0 ? "+" : ""}${money(s.profit)}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        ${holdings.length
+          ? holdings.map((h,i) => assetHTML(h,i,true)).join("")
+          : `<div class="empty">No holdings yet.<br>Add your first stock or ETF.</div>`
+        }
+
+        <button class="primary" onclick="openHoldingForm()">
+          + Add Holding
+        </button>
+      </div>
+    `;
+  }
+
+  function watchlistScreen() {
+    return `
+      <div class="header">
+        <div class="eyebrow">MARKET</div>
+        <div class="title">Watchlist</div>
+      </div>
+
+      <div class="section">
+        ${watchlist.length
+          ? watchlist.map((w,i) => assetHTML(w,i,false)).join("")
+          : `<div class="empty">No assets in your watchlist.</div>`
+        }
+
+        <button class="primary" onclick="openWatchForm()">
+          + Add to Watchlist
+        </button>
+      </div>
+    `;
+  }
+
+  function settingsScreen() {
+    return `
+      <div class="header">
+        <div class="eyebrow">APP</div>
+        <div class="title">Settings</div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">Market Data</div>
+        <p style="color:#858996;font-size:13px;line-height:1.6">
+          Currently using demo prices. IndianAPI will be connected in the
+          next stage.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="section-title">Alerts</div>
+        <p style="color:#858996;font-size:13px;line-height:1.6">
+          Watchlist alert preferences are saved locally. WhatsApp alerts
+          will be added later.
+        </p>
+      </div>
+    `;
+  }
+
+  function navigation() {
+    return `
+      <div class="bottom-nav">
+        <button class="nav-button ${currentTab === "home" ? "active" : ""}"
+          onclick="setTab('home')">
+          <span class="nav-icon">⌂</span>
+          Home
+        </button>
+
+        <button class="nav-button ${currentTab === "holdings" ? "active" : ""}"
+          onclick="setTab('holdings')">
+          <span class="nav-icon">▥</span>
+          Holdings
+        </button>
+
+        <button class="nav-button ${currentTab === "watchlist" ? "active" : ""}"
+          onclick="setTab('watchlist')">
+          <span class="nav-icon">☆</span>
+          Watchlist
+        </button>
+
+        <button class="nav-button ${currentTab === "settings" ? "active" : ""}"
+          onclick="setTab('settings')">
+          <span class="nav-icon">⚙</span>
+          Settings
+        </button>
+      </div>
+    `;
+  }
+
+  function render() {
+    let content = "";
+
+    if (currentTab === "home") content = homeScreen();
+    if (currentTab === "holdings") content = holdingsScreen();
+    if (currentTab === "watchlist") content = watchlistScreen();
+    if (currentTab === "settings") content = settingsScreen();
+
+    document.getElementById("app").innerHTML =
+      content + navigation();
+  }
+
+  function setTab(tab) {
+    currentTab = tab;
+    render();
+    window.scrollTo(0,0);
+  }
+
+  function openSheet(html) {
+    document.getElementById("sheetContent").innerHTML = html;
+    document.getElementById("sheet").classList.add("show");
+    document.getElementById("backdrop").classList.add("show");
+  }
+
+  function closeSheet() {
+    document.getElementById("sheet").classList.remove("show");
+    document.getElementById("backdrop").classList.remove("show");
+    editingIndex = null;
+  }
+
+  document.getElementById("backdrop").onclick = closeSheet;
+
+  function assetOptions(selected = "") {
+    return defaultAssets.map(a =>
+      `<option value="${a.symbol}" ${a.symbol === selected ? "selected" : ""}>
+        ${a.symbol} — ${a.name}
+      </option>`
+    ).join("");
+  }
+
+  function openHoldingForm(index = null) {
+    editingIndex = index;
+
+    const h = index !== null ? holdings[index] : {
+      symbol: "RELIANCE",
+      quantity: "",
+      avgPrice: ""
+    };
+
+    openSheet(`
+      <div class="sheet-title">
+        ${index === null ? "Add Holding" : "Edit Holding"}
+      </div>
+
+      <div class="field">
+        <label>Stock / ETF</label>
+        <select id="holdingSymbol">
+          ${assetOptions(h.symbol)}
+        </select>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Quantity</label>
+          <input id="holdingQuantity" type="number"
+            min="0" step="any" value="${h.quantity}">
+        </div>
+
+        <div class="field">
+          <label>Average Buy Price</label>
+          <input id="holdingAvg" type="number"
+            min="0" step="any" value="${h.avgPrice}">
+        </div>
+      </div>
+
+      <button class="primary" onclick="saveHolding()">
+        Save Holding
+      </button>
+
+      <button class="close-button" onclick="closeSheet()">
+        Cancel
+      </button>
+    `);
+  }
+
+  function saveHolding() {
+    const symbol = document.getElementById("holdingSymbol").value;
+    const quantity = Number(document.getElementById("holdingQuantity").value);
+    const avgPrice = Number(document.getElementById("holdingAvg").value);
+
+    if (!symbol || quantity <= 0 || avgPrice <= 0) {
+      alert("Please enter valid values.");
+      return;
+    }
+
+    if (editingIndex !== null) {
+      holdings[editingIndex] = {
+        symbol,
+        quantity,
+        avgPrice
+      };
+    } else {
+      holdings.push({
+        symbol,
+        quantity,
+        avgPrice
+      });
+    }
+
+    save();
+    closeSheet();
+    render();
+  }
+
+  function editHolding(index) {
+    openHoldingForm(index);
+  }
+
+  function deleteHolding(index) {
+    if (!confirm("Delete this holding?")) return;
+
+    holdings.splice(index, 1);
+    save();
+    render();
+  }
+
+  function openWatchForm(index = null) {
+    editingIndex = index;
+
+    const w = index !== null ? watchlist[index] : {
+      symbol: "NIFTYBEES",
+      threshold: 1,
+      up: true,
+      down: true
+    };
+
+    openSheet(`
+      <div class="sheet-title">
+        ${index === null ? "Add to Watchlist" : "Edit Alert"}
+      </div>
+
+      <div class="field">
+        <label>Stock / ETF</label>
+        <select id="watchSymbol">
+          ${assetOptions(w.symbol)}
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Alert Threshold</label>
+        <select id="watchThreshold">
+          ${[0.5,1,2,3,5].map(v =>
+            `<option value="${v}" ${Number(w.threshold) === v ? "selected" : ""}>
+              ${v}%
+            </option>`
+          ).join("")}
+        </select>
+      </div>
+
+      <div class="row">
+        <button class="primary"
+          style="margin-top:0"
+          onclick="toggleWatch('up')"
+          id="upButton">
+          📈 UP: ${w.up ? "ON" : "OFF"}
+        </button>
+
+        <button class="primary"
+          style="margin-top:0"
+          onclick="toggleWatch('down')"
+          id="downButton">
+          📉 DOWN: ${w.down ? "ON" : "OFF"}
+        </button>
+      </div>
+
+      <button class="primary" onclick="saveWatch()">
+        Save Watchlist
+      </button>
+
+      <button class="close-button" onclick="closeSheet()">
+        Cancel
+      </button>
+
+      <script>
+      window.tempWatch = {
+        up: ${Boolean(w.up)},
+        down: ${Boolean(w.down)}
+      };
+      <\/script>
+    `);
+  }
+
+  function toggleWatch(type) {
+    if (!window.tempWatch) {
+      window.tempWatch = {up:true,down:true};
+    }
+
+    window.tempWatch[type] = !window.tempWatch[type];
+
+    const up = document.getElementById("upButton");
+    const down = document.getElementById("downButton");
+
+    if (up) up.innerText =
+      "📈 UP: " + (window.tempWatch.up ? "ON" : "OFF");
+
+    if (down) down.innerText =
+      "📉 DOWN: " + (window.tempWatch.down ? "ON" : "OFF");
+  }
+
+  function saveWatch() {
+    const symbol = document.getElementById("watchSymbol").value;
+    const threshold = Number(document.getElementById("watchThreshold").value);
+
+    if (!window.tempWatch) {
+      window.tempWatch = {up:true,down:true};
+    }
+
+    const item = {
+      symbol,
+      threshold,
+      up: window.tempWatch.up,
+      down: window.tempWatch.down
+    };
+
+    if (editingIndex !== null) {
+      watchlist[editingIndex] = item;
+    } else {
+      watchlist.push(item);
+    }
+
+    save();
+    closeSheet();
+    render();
+  }
+
+  function editWatch(index) {
+    openWatchForm(index);
+  }
+
+  function deleteWatch(index) {
+    if (!confirm("Remove from watchlist?")) return;
+
+    watchlist.splice(index, 1);
+    save();
+    render();
+  }
+
+  render();
+</script>
+
+</body>
+</html>
